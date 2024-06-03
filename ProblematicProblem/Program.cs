@@ -41,14 +41,12 @@ namespace ProblematicProblem
             Console.WriteLine();
 
             Console.Write("What is your age? ");
-            
-
             var willParse = int.TryParse(Console.ReadLine(), out int userAge);
-            
+
             while (!willParse)
             {
                 Console.WriteLine("No, no, no. Your AGE. How old are you?");
-                willParse =int.TryParse(Console.ReadLine() , out userAge);
+                willParse =int.TryParse(Console.ReadLine(), out userAge);
             }
             
             Console.WriteLine();
@@ -115,23 +113,26 @@ namespace ProblematicProblem
                 }
                 Console.WriteLine();
                 Console.Write("Choosing your random activity");
+
                 for (int i = 0; i < 9; i++)
                 {
                     Console.Write(". ");
                     Thread.Sleep(500);
                 }
+
                 Console.WriteLine();
                 int randomNumber = rng.Next(activities.Count);
                 string randomActivity = activities[randomNumber];
 
-                if (userAge >= 21 && randomActivity == "Wine Tasting")
+                if (userAge < 21 && randomActivity == "Wine Tasting")
                 {
                     Console.WriteLine($"Oh no! Looks like you are too young to do {randomActivity}");
-                    Console.WriteLine("Please choose something else!");
+                    Console.WriteLine($"Please choose something else.");
                     activities.Remove(randomActivity);
                     randomNumber = rng.Next(activities.Count);
                     randomActivity = activities[randomNumber];
                 }
+
                 Console.Write($"Ah got it! {userName}, your random activity is: {randomActivity}!\n  Is this ok or do you want to grab another activity? Keep/Redo: ");
                 Console.WriteLine();
 
